@@ -1,0 +1,44 @@
+# Python bytecode and cache files
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environment directories
+venv/
+env/
+ENV/
+.venv/
+
+# SQLite database files
+*.db
+
+# Log files
+*.log
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Python packaging and build artifacts
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment files
+.env
+
+# Generated files
+fortune_result.md
+
+# Dependency directories
+node_modules/
+
+# Lock files
+pnpm-lock.yaml
+
+# System files
+.DS_Store
+Thumbs.db

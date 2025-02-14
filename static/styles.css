@@ -63,6 +63,11 @@ label {
     margin: 10px 0 5px;
 }
 
+label.inline-label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
 input[type="date"],
 input[type="time"],
 select,
@@ -90,4 +95,4 @@ pre {
     padding: 10px;
     border-radius: 4px;
     overflow: auto;
-} 
+}

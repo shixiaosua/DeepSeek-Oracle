@@ -19,7 +19,7 @@ class deepseek_huoshan:
         
         )
 
-    def get_response(self, user_message):
+    def get_response(self, user_message, endpoint_id):
         """发送用户消息并获取响应
         
         :param user_message: 用户输入的消息
@@ -41,7 +41,7 @@ class deepseek_huoshan:
             print("发送的消息:", messages)
             
             response = self.client.chat.completions.create(
-                model="ep-XXXXXXX-XXX", # 这里请改为你自己的推理接入点 
+                model=endpoint_id,
                 messages=messages
             )
             print(response.choices[0].message.content)
