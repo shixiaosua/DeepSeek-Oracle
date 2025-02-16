@@ -2,8 +2,6 @@ from flask import Flask, render_template, request, session, redirect, url_for, s
 from flask_cors import CORS  # 导入 CORS
 from llmana.glmapi import GLMClient
 from llmana.deepseek_ali_api import DeepSeekClient
-# from llmana.glmapi import GLMClient
-# from llmana.deepseek_ali_api import DeepSeekClient
 from json2ziwei.api import SolarAPI
 from json2ziwei.convert import convert_main_json_to_text
 from llmana.deepseek_huoshan_api import deepseek_huoshan
@@ -33,7 +31,7 @@ class StandardizedLLMClient:
         @description 初始化客户端，从环境变量读取配置
         """
         self.api_key = os.getenv('ARK_API_KEY')
-        self.endpoint_id = os.getenv('ARK_ENDPOINT_ID')
+
         self.client = deepseek_huoshan(self.api_key)
         self.tokenizer = initialize_tokenizer()  # 初始化 tokenizer
 
@@ -48,7 +46,7 @@ class StandardizedLLMClient:
         input_tokens = len(encode_text(prompt, self.tokenizer))
         
         # 获取模型响应
-        response = self.client.get_response(prompt, self.endpoint_id)
+        response = self.client.get_response(prompt)
         
         # 计算输出 token 数量
         output_tokens = len(encode_text(response, self.tokenizer))
@@ -224,7 +222,7 @@ def fortune_telling():
         markdown_content += f"- Token 数量: {token_count}\n"
         markdown_content += f"\n{response}\n\n"
     
-    with open("fortune_result.md", "w", encoding="utf-8") as f:
+    with open(f"fortune_result_{session.get('date')}_{session.get('timezone')}.md", "w", encoding="utf-8") as f:
         f.write(markdown_content)
 
     # 将结果存储到 SQLite 数据库
